@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskly</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Taskly</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- CADASTROS LADO A LADO -->
+    <div class="grid-2">
+
+      <!-- CADASTRAR CLIENTE -->
+      <div class="card">
+        <h2>Cadastrar Cliente</h2>
+        <input id="nome" placeholder="Nome completo">
+        <input id="email" placeholder="Email">
+        <input id="telefone" placeholder="Telefone">
+        <button onclick="criarCliente()">Cadastrar Cliente</button>
+      </div>
+
+      <!-- CADASTRAR TAREFA -->
+      <div class="card">
+        <h2>Cadastrar Tarefa</h2>
+        <input id="descricao" placeholder="Descrição">
+        <input id="data" type="date">
+        <select id="clienteId">
+          <option value="">Selecione um cliente</option>
+        </select>
+        <button onclick="criarTarefa()">Cadastrar Tarefa</button>
+      </div>
+
+    </div>
+
+    <!-- CLIENTES -->
+    <div class="card">
+      <div class="collapse-header" onclick="toggleClientes()">
+        <h2>Clientes <span class="contador" id="contadorClientes"></span></h2>
+        <span id="iconClientes">▼</span>
+      </div>
+      <div id="buscaClientesWrap" class="busca-wrap hidden">
+        <input id="buscaNome" placeholder="Buscar por nome..." oninput="filtrarClientes()">
+      </div>
+      <ul id="listaClientes" class="collapsed"></ul>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card">
+      <h2>Filtrar Tarefas</h2>
+      <input
+        id="buscaCliente"
+        placeholder="Buscar por cliente ou descrição..."
+        oninput="filtrarTarefas()"
+      >
+      <div class="filtros-status">
+        <button class="filtro ativo" onclick="setFiltro('todos', event)">Todos</button>
+        <button class="filtro" onclick="setFiltro('PENDENTE', event)">Pendente</button>
+        <button class="filtro" onclick="setFiltro('EM_ANDAMENTO', event)">Em andamento</button>
+        <button class="filtro" onclick="setFiltro('CONCLUIDA', event)">Concluída</button>
+      </div>
+    </div>
+
+    <!-- TAREFAS -->
+    <div class="card">
+      <div class="collapse-header" onclick="toggleTarefas()">
+        <h2>Tarefas <span class="contador" id="contadorTarefas"></span></h2>
+        <span id="iconTarefas">▼</span>
+      </div>
+      <ul id="listaTarefas" class="collapsed"></ul>
+    </div>
+
+    <footer class="footer">
+      <p>Automator &copy; 2025</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="modalText"></p>
+      <div class="modal-actions">
+        <button onclick="fecharModal()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
